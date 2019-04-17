@@ -1,6 +1,6 @@
 import sqlite3
 
-'''
+
 conn = sqlite3.connect('userdatabase.db')
 
 c = conn.cursor()
@@ -15,8 +15,6 @@ conn.commit()
 
 conn.close()
 
-'''
-'''
 conn = sqlite3.connect('articledatabase.db')
 
 c = conn.cursor()
@@ -34,7 +32,7 @@ conn.commit()
 
 conn.close()
 
-'''
+
 conn = sqlite3.connect('commentdatabase.db')
 
 c = conn.cursor()
@@ -51,8 +49,8 @@ conn.commit()
 
 conn.close()
 
-'''
-conn = sqlite3.connect('tagheaddatabase.db')
+
+conn = sqlite3.connect('tagdatabase.db')
 
 c = conn.cursor()
 
@@ -65,21 +63,14 @@ c.execute(""" Create table if not exists tag_head (
 
 conn.commit()
 
-conn.close()
-
-conn = sqlite3.connect('tagdetaildatabase.db')
-
-c = conn.cursor()
-
 c.execute(""" Create table if not exists tag_detail (
                     article_id INTEGER,
                     tag_id INTEGER NOT NULL REFERENCES tag_head(tag_id),
+                    email TEXT,
                     create_time DATETIME,
                     update_time DATETIME,
-                    PRIMARY KEY(article_id,tag_id),
-                    FOREIGN KEY (article_id) REFERENCES article(article_id)) """)
+                    PRIMARY KEY(article_id,tag_id)) """)
 
 conn.commit()
 
 conn.close()
-'''

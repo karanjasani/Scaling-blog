@@ -87,7 +87,7 @@ def addcomment(articleid):
 @app.route("/articles/comments/countcomment/<articleid>", methods=['GET'])
 def countcomment(articleid):
     try:
-        db = get_db()
+        db = get_db1()
         c = db.cursor()
 
         c.execute("select count(*) from comment where article_id=(:articleid)",{"articleid":articleid})
@@ -103,10 +103,9 @@ def countcomment(articleid):
     return response
 
 @app.route("/deletecomment/<commentid>", methods=['DELETE'])
-@auth.login_required
 def deletecomment(commentid):
     try:
-        db = get_db()
+        db = get_db1()
         c = db.cursor()
         #commentid = request.args.get('commentid')
         email = request.authorization.username
@@ -125,7 +124,7 @@ def deletecomment(commentid):
 @app.route("/articles/comments/recentcomments/<articleid>/<recent>", methods=['GET'])
 def recentcomments(articleid,recent):
     try:
-        db = get_db()
+        db = get_db1()
         db.row_factory = dict_factory
         c = db.cursor()
         #recent = request.args.get('recent')
