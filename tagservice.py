@@ -63,7 +63,7 @@ def addTags():
             tag_Details=details['tag'].split(',')
             articleId=details['articleId']
 
-            c2.execute("SELECT article_id FROM article WHERE article_id=?",(articleId,))
+            c2.execute("SELECT article_id FROM article WHERE article_id=? and email=?",(articleId,email,))
             rec=c2.fetchone()
             #datalen=len(rec)
             if (rec):
@@ -89,7 +89,7 @@ def addTags():
                     else:
                         response = Response(status=404, mimetype='application/json')
             else:
-                response = Response(status=409, mimetype='application/json')
+                response = Response(status=404, mimetype='application/json')
 
         except sqlite3.Error as er:
             print(er)
