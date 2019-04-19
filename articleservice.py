@@ -46,7 +46,7 @@ def postarticle():
             c.execute("select article_id from article order by update_time desc limit 1")
             row = c.fetchone()
             response = Response(status=201, mimetype='application/json')
-            path = "http://127.0.0.1:5000/articles/"+str(row[0])
+            path = "http://localhost/articles/"+str(row[0])
             c.execute("update article set url=(:path) where article_id=(:articleid)", {"path":path, "articleid":row[0]})
             db.commit()
             response.headers['location'] = path
@@ -156,7 +156,7 @@ def metaarticle(recent):
         db.row_factory = dict_factory
         c = db.cursor()
         #recent = request.args.get('recent')
-        c.execute("select title, email, create_time, url from article order by create_time desc limit (:recent)", {"recent":recent})
+        c.execute("select title, email, create_time, url, article_id from article order by create_time desc limit (:recent)", {"recent":recent})
         recent_articles = c.fetchall()
         recent_articles_length = len(recent_articles)
         return jsonify(recent_articles)

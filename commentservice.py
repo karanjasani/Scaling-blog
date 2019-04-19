@@ -76,7 +76,7 @@ def addcomment(articleid):
                 c1.execute("select comment_id from comment order by update_time desc limit 1")
                 row = c1.fetchone()
                 response = Response(status=201, mimetype='application/json')
-                response.headers['location'] = 'http://127.0.0.1:5000/articles/comments'+str(row[0])
+                response.headers['location'] = 'http://localhost/articles/comments'+str(row[0])
 
         except sqlite3.Error as er:
             print(er)

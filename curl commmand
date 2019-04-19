@@ -45,60 +45,60 @@ curl -i -H "Content-Type: application/json" -X GET http://localhost/articles/2
 
 edit article
 
-curl -i -u karan@gmail.com:abc -H "Content-Type: application/json" -X PATCH http://localhost/editarticle?articleid=1 -d '{"title": "samit second title","content":"samit second Content"}'
+curl -i -u karan@gmail.com:abc -H "Content-Type: application/json" -X PATCH http://localhost/editarticle/1 -d '{"title": "samit second title","content":"samit second Content"}'
 
 ————————————————————————————
 
 delete article
 
-curl -i -u karan@gmail.com:abc -H "Content-Type: application/json" -X DELETE http://localhost/deletearticle?articleid=1
+curl -i -u karan@gmail.com:abc -H "Content-Type: application/json" -X DELETE http://localhost/deletearticle/1
 
 ————————————————————————————
 
 recent article
 
-curl -i -H "Content-Type: application/json" -X GET http://localhost/recentarticle?recent=3
+curl -i -H "Content-Type: application/json" -X GET http://localhost/recentarticle/3
 
 ————————————————————————————
 
 meta article
 
-curl -i -H "Content-Type: application/json" -X GET http://localhost/metaarticle?recent=3
+curl -i -H "Content-Type: application/json" -X GET http://localhost/metaarticle/3
 
 ————————————————————————————
 
 add comment
 
-curl -i -u samit@gmail.com:ghi -H "Content-Type: application/json" -X POST http://localhost/articles/2/addcomment -d '{"comment_content":"first comment"}'
+curl -i -u samit@gmail.com:ghi -H "Content-Type: application/json" -X POST http://localhost/addcomment/1 -d '{"comment_content":"first comment"}'
 
 ————————————————————————————
 
 count comment
 
-curl -i -H "Content-Type: application/json" -X GET http://localhost/articles/2/comments/countcomment
+curl -i -H "Content-Type: application/json" -X GET http://localhost/articles/comments/countcomment/2
 
 ————————————————————————————
 
 delete comment
 
-curl -i -u shailavi@gmail.com:def -H "Content-Type: application/json" -X DELETE http://localhost/deletecomment?commentid=12
+curl -i -u shailavi@gmail.com:def -H "Content-Type: application/json" -X DELETE http://localhost/deletecomment/2
 
 ————————————————————————————
 
 recent comments
 
-curl -i -H "Content-Type: application/json" -X GET http://localhost/articles/2/comments/recentcomments?recent=3
+curl -i -H "Content-Type: application/json" -X GET http://localhost/articles/comments/1/1
 
 ————————————————————————————
 
 add tag
 
-curl -u shrutitaware@csu.fullerton.edu:shruti1 -H "Content-Type: application/json" -X POST -d '{"tag":"csuf","articleId":"52"}' http://localhost/tag/addtag
+curl -i -u samit@gmail.com:ghi -H "Content-Type: application/json" -X POST -d '{"tag":"sampleTag1","articleId":"1"}' http://localhost/tag/addtag
 ————————————————————————————
 
 delete addtag
 
-curl -u shrutitaware@csu.fullerton.edu:shruti1 -H "Content-Type: application/json" -X DELETE -d '{"tag":"csuf","articleId":"52"}' http://localhost/tag/deletetag
+curl -u samit@gmai.com:ghi -H "Content-Type: application/json" -X DELETE -d '{"tag":"engineer","articleId":"2"}' http://localhost/tag/deletetag
 ————————————————————————————
 
 retrive tags
@@ -109,3 +109,11 @@ curl -H "Content-Type: application/json" -X GET http://localhost/tag/gettag/52
 retrive urls
 
 curl -H "Content-Type: application/json" -X GET http://localhost/tag/getarticles/csuf
+
+————————————————————————————
+
+Syndication service
+
+curl -i -X GET  http://localhost/summary
+curl -i -X GET  http://localhost/comments
+curl -i -X GET  http://localhost/feed
