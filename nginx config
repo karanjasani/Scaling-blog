@@ -25,6 +25,13 @@ upstream tagserver {
         server 127.0.0.1:5302;
 }
 
+upstream syndicateserver {
+        server 127.0.0.1:5400;
+        server 127.0.0.1:5401;
+        server 127.0.0.1:5402;
+}
+
+
 
 
 server {
@@ -125,6 +132,19 @@ server {
                         location /tag/getarticles/ {
                                         proxy_pass "http://tagserver/tag/getarticles/";
                                 }
+
+                                location /summary {
+                                                proxy_pass "http://syndicateserver/summary";
+                                        }
+
+                                        location /feed {
+                                                proxy_pass "http://syndicateserver/feed";
+                                        }
+
+                                        location /comments {
+                                                proxy_pass "http://syndicateserver/comments";
+                                        }
+
 
                                 location = /auth {
                                         internal;
