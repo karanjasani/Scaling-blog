@@ -1,4 +1,7 @@
 # Scaling-blog
+
+Steps to run the project
+
 1. Copy the project folder (Scaling-blog) to the working directory.
 2. install requirement file.
 3. run Procfile using foreman start to run all the services
